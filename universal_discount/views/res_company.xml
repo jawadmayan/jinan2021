@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="discount_module_control" model="ir.ui.view">
+            <field name="name">discount inherit</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='favicon']" position="after">
+
+                    <field name="so_double_validation"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

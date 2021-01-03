@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="sales_margin_moduleform" model="ir.ui.view">
+        <field name="name">Sales Marging Access Right</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='margin']" position="replace">
+                <field name="margin" groups="base.group_system"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+
+</data>
+</odoo>

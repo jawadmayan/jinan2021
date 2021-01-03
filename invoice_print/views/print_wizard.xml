@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="print_invocie_inherit" model="ir.ui.view">
+        <field name="name">Print Invoice Inherit</field>
+        <field name="model">account.invoice.send</field>
+        <field name="inherit_id" ref="account.account_invoice_send_wizard_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[@name='info_form']" position="after">
+                <!-- Add your fields or attributes here -->
+
+              <br/>  <field name="invoice_template" widget="radio" attrs="{'invisible': ['|', ('is_print', '=', False), ('composition_mode', '=', 'mass_mail')]}"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+</data>
+</odoo>

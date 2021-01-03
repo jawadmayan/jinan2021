@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+
+    <record id="res_partner_inherit_sales_person" model="ir.ui.view">
+        <field name="name">Sales Person</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook/page[@name='sales_purchases']/group[@name='container_row_2']/group/field[@name='user_id']" position="replace">
+                <field name="user_id" invisible="1"/>
+                <field name="is_seles_person"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <record id="sales_person_action" model="ir.actions.act_window">
+        <field name="name">Sales Person</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('is_seles_person','=',1)]</field>
+        <field name="context">{'default_is_seles_person':1}</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            <!-- Add Text Here -->
+          </p><p>
+            <!-- More details about what a user can do with this object will be OK -->
+          </p>
+        </field>
+    </record>
+
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="sales_person_menu" name="Sales Person" parent="contacts.menu_contacts" action="sales_person_action"
+              sequence="3"/>
+
+    <menuitem id="contacts.res_partner_menu_config"
+              name="Configuration"
+              parent="contacts.menu_contacts"
+              groups="base.group_system"
+              sequence="4"/>
+
+
+</data>
+</odoo>

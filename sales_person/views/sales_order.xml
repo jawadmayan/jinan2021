@@ -1,0 +1,89 @@
+<odoo>
+    <data>
+
+
+        <record id="sales_order_sales_person" model="ir.ui.view">
+            <field name="name">Sales Person</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="sales_person" domain="[('is_seles_person','=', 1)]"
+                           context="{'default_is_seles_person':1}"/>
+                </xpath>
+                  <xpath expr="//field[@name='user_id']" position="replace">
+                    <field name="user_id" invisible="1" />
+
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="sales_order_sales_person_tree" model="ir.ui.view">
+            <field name="name">Sales Person</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='user_id']" position="replace">
+                    <field name="user_id" invisible="1"/>
+                    <field name="sales_person"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="sales_quotation_sales_person_tree" model="ir.ui.view">
+            <field name="name">Sales Person</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='user_id']" position="replace">
+                    <field name="user_id" invisible="1"/>
+                    <field name="sales_person"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="sales_order_sales_person_search" model="ir.ui.view">
+            <field name="name">Sales Person</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='user_id']" position="replace">
+                    <field name="user_id" invisible="1"/>
+                    <field name="sales_person" domain="[('is_seles_person','=', 1)]" />
+                </xpath>
+
+                <xpath expr="//filter[@name='salesperson']" position="replace">
+                    <filter string="Salesperson" name="salesperson" domain="[]" context="{'group_by': 'sales_person'}"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="sales_order_sales_person_search_filter" model="ir.ui.view">
+            <field name="name">Sales Person</field>
+            <field name="model">sale.report</field>
+            <field name="inherit_id" ref="sale.view_order_product_search"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='user_id']" position="replace">
+                    <field name="user_id"   invisible="1"/>
+                    <field name="sales_person" domain="[('is_seles_person','=', 1)]" />
+                </xpath>
+
+                <xpath expr="//filter[@name='User']" position="replace">
+                    <filter string="Salesperson" name="salesperson" domain="[]" context="{'group_by': 'sales_person'}"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="company_form_inherit" model="ir.ui.view">
+        <field name="name">Company Form Inherit</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='website']" position="after">
+
+                <field name="bank_name"/>
+                <field name="acc_no"/>
+                <field name="ifsc"/>
+                <field name="branch"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+
+</data>
+</odoo>
