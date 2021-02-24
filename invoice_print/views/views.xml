@@ -23,24 +23,36 @@
                     <field name="terms_of_delivery"/>
                 </xpath>
                 <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='price_unit']" position="before">
-                    <field name="product_packaging" />
+                    <field name="product_packaging"/>
                 </xpath>
 
             </field>
         </record>
         <record id="account_move_inherit_search" model="ir.ui.view">
-                <field name="name">Account Move Inherit po number Search</field>
-                <field name="model">account.move</field>
-                <field name="inherit_id" ref="account.view_account_invoice_filter"/>
-                <field name="arch" type="xml">
-                    <xpath expr="//field[@name='name']" position="after">
-                        <field name="po_number"/>
-                        <field name="ref"/>
-                        <field name="store_no"/>
-                    </xpath>
+            <field name="name">Account Move Inherit po number Search</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="po_number"/>
+                    <field name="ref"/>
+                    <field name="store_no"/>
+                </xpath>
 
-                </field>
-            </record>
+            </field>
+        </record>
+
+
+        <record id="sale_order_form_sale_stock_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.sale.stock.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='warehouse_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
 
 
         <!-- Inherit Form View to Modify it -->
@@ -54,11 +66,11 @@
                 <!--                </xpath>-->
                 <xpath expr="//field[@name='payment_term_id']" position="after">
                     <field name="po_number"/>
-                    <!--                    <field name="warehouse_id"/>-->
                     <field name="ref"/>
                     <field name="grv_no"/>
                     <field name="other_ref"/>
                     <field name="terms_of_delivery"/>
+                     <field name="warehouse_id"/>
                 </xpath>
                 <xpath expr="//field[@name='partner_shipping_id']" position="after">
                     <field name="po_number"/>
@@ -73,7 +85,7 @@
         </record>
 
         <record id="sale_order_inherit_search" model="ir.ui.view">
-            <field name="name">Sale Order Inherit po number Search </field>
+            <field name="name">Sale Order Inherit po number Search</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
             <field name="arch" type="xml">
